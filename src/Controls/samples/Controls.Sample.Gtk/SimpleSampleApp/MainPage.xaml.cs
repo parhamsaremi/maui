@@ -16,13 +16,5 @@ namespace Maui.SimpleSampleApp
 		{
 			InitializeComponent();
 		}
-
-		void InitializeComponent()
-		{
-			string xamlText = File.ReadAllText("SimpleSampleApp/MainPage.xaml");
-			ContentPage page = new ContentPage().LoadFromXaml(xamlText);
-
-			Content = page.Content;
-		}
 	}
 }
