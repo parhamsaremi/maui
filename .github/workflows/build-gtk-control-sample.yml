@@ -33,10 +33,15 @@ jobs:
             dotnet cake build.cake --BuildVersion=3.24.24.64
             dotnet cake --BuildTarget=InstallWorkload --BuildVersion=3.24.24.64
             cd ..
-      - name: Build MAUI
+      - name: Build MAUI Sample Project
         run: |
             cd maui
             dotnet nuget add source '../GtkSharp/BuildOutput/NugetPackages'
             dotnet build Microsoft.Maui.BuildTasks.slnf
             dotnet build ./src/Controls/samples/Controls.Sample.Gtk/Controls.Sample.Gtk.csproj
+            cd ..
+      - name: Build Maui Template
+        run: |
+            cd maui
+            dotnet build ./src/Controls/samples/SimpleMauiTemplateApp/SimpleMauiTemplateApp.csproj
             cd ..
