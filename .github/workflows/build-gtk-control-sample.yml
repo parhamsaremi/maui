@@ -40,11 +40,14 @@ jobs:
             dotnet workload list
             dotnet nuget add source '../GtkSharp/BuildOutput/NugetPackages'
             dotnet tool restore
+      - name: install android dependencies
+        run: |
+            dotnet workload install android
       - name: Dotnet Pack
         run: |
             cd maui
             pwd
-            dotnet cake --pack --workloads=global --verbosity=Diagnostic 
+            dotnet pack Microsoft.Maui-linux.slnf -c:Debug -p:SymbolPackageFormat=snupkg
             dotnet workloads list
       - name: Build MAUI
         run: |
