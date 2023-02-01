@@ -12,14 +12,14 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.5" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Compatibility\Core\src\Compatibility.csproj" />
-    <ProjectReference Include="..\..\..\Core\src\Core.csproj" />
-    <ProjectReference Include="..\..\src\Core\Controls.Core.csproj" />
-    <ProjectReference Include="..\..\..\Controls\src\Xaml\Controls.Xaml.csproj" />
     <ProjectReference Include="..\..\..\BlazorWebView\src\Maui\Microsoft.AspNetCore.Components.WebView.Maui.csproj" />
-    <ProjectReference Include="..\..\..\Controls\Maps\src\Controls.Maps.csproj" />
+    <ProjectReference Include="..\..\..\Essentials\src\Essentials.csproj" />
+    <ProjectReference Include="..\..\..\Controls\src\Core\Controls.Core.csproj" />
+    <ProjectReference Include="..\..\..\Controls\src\Xaml\Controls.Xaml.csproj" />
+    <ProjectReference Include="..\..\..\Core\src\Core.csproj" />
+    <ProjectReference Include="..\..\..\Compatibility\Core\src\Compatibility.csproj" />
     <ProjectReference Include="..\..\..\Controls\Foldable\src\Controls.Foldable.csproj" />
-<!--    <ProjectReference Include="..\Controls.Sample\Controls.Sample.csproj" />-->
+    <ProjectReference Include="..\..\..\Controls\Maps\src\Controls.Maps.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\Controls.Sample\Resources\Embedded\dotnet_bot.png">
@@ -30,4 +30,5 @@
   <ItemGroup>
     <EmbeddedResource Include="rainbow_heart.png" />
   </ItemGroup>
+  <Import Project="..\..\..\Maui.InTree.props"/>
 </Project>
