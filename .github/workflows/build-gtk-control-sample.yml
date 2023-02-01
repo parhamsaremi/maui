@@ -40,8 +40,3 @@ jobs:
             dotnet build Microsoft.Maui.BuildTasks.slnf
             dotnet build ./src/Controls/samples/Controls.Sample.Gtk/Controls.Sample.Gtk.csproj
             cd ..
-      - name: Build Maui Template
-        run: |
-            cd maui
-            dotnet build ./src/Controls/samples/SimpleMauiTemplateApp/SimpleMauiTemplateApp.csproj
-            cd ..
