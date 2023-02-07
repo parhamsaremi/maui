@@ -7,9 +7,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout MAUI repo
-        uses: actions/checkout@v2
-        with:
-          path: maui
+        uses: actions/checkout@v1
       - name: Checkout GTKSharp repo
         uses: actions/checkout@v3
         with:
@@ -30,6 +28,7 @@ jobs:
             # Disable GTKSharp's cake versioning behaviour with github ci
             # beceause it breaks InstallWorkload step.
             export GITHUB_ACTIONS=
+            pwd
             dotnet cake build.cake --BuildVersion=3.24.24.64
             dotnet cake --BuildTarget=InstallWorkload --BuildVersion=3.24.24.64
             cd ..
