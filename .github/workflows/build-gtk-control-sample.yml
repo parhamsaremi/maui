@@ -8,8 +8,6 @@ jobs:
     steps:
       - name: Checkout MAUI repo
         uses: actions/checkout@v2
-        with:
-          path: maui
       - name: Checkout GTKSharp repo
         uses: actions/checkout@v3
         with:
@@ -23,6 +21,10 @@ jobs:
         uses: actions/setup-dotnet@v1.7.2
         with:
           dotnet-version: '6.0.401'
+      - name: ls
+        run: |
+            ls -la
+            ls -la GtkSharp
       - name: Build GtkSharp
         run: |
             cd GtkSharp
