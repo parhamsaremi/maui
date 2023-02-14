@@ -25,7 +25,7 @@ using Microsoft.Maui.Controls.Handlers.Compatibility;
 using Microsoft.Maui.Controls.Compatibility.Platform.Tizen;
 #elif GTK
 using Microsoft.Maui.Controls.Handlers.Compatibility;
-using Microsoft.Maui.Controls.Compatibility.Platform.GTK;
+using Microsoft.Maui.Controls.Compatibility.Platform.Gtk;
 #endif
 
 namespace Microsoft.Maui.Controls.Hosting

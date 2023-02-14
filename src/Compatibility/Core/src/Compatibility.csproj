@@ -32,7 +32,7 @@
     <None Remove="Gtk2\**" />
     <None Remove="MacOS\**" />
     <None Remove="WPF\**" />
-    <!-- <Content Remove="GTK\**" /> -->
+    <Content Remove="GTK\**" />
     <Content Remove="MacOS\**" />
     <Content Remove="WPF\**" />
     <Page Remove="**\WPF\**\*.xaml" />
