@@ -303,14 +303,15 @@ namespace Microsoft.Maui.Platform
 
 			bool cacheHit = CanBeCached() && MeasureCache.TryGetValue(key, out cached);
 
-			if (cacheHit)
-			{
-#if TRACE_ALLOCATION
-				if (!_checkCacheHitFailed)
-#endif
-					return cached;
+// 			if (cacheHit)
+// 			{
+// #if TRACE_ALLOCATION
+// 				if (!_checkCacheHitFailed)
+// #endif
+// 					Console.WriteLine($"Cached value is {cached}");
+// 					return cached;
 
-			}
+// 			}
 
 			var measured = VirtualView.CrossPlatformMeasure(widthConstraint, heightConstraint);
 
