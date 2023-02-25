@@ -13,7 +13,7 @@ jobs:
       - name: Checkout GTKSharp repo
         uses: actions/checkout@v3
         with:
-          repository: aarani/GtkSharp
+          repository: parhamsaremi/GtkSharp
           path: GtkSharp
       # We also tested using 6.0.111 for both projects
       # but MAUI failed to build on this version with this error:
