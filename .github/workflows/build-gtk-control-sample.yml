@@ -18,6 +18,8 @@ jobs:
         uses: actions/setup-dotnet@v1.7.2
         with:
           dotnet-version: '6.0.300'
+      - name: Install workload
+        run: dotnet workload install gtk
       - name: Build MAUI
         run: |
             cd maui
