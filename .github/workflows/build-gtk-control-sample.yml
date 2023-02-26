@@ -20,12 +20,11 @@ jobs:
           dotnet-version: '6.0.300'
       - name: check dotnet version
         run: dotnet --version
-      - name: workload search
-        run: dotnet workload search
       - name: Install workload
         run: |
             dotnet nuget add source https://nuget.pkg.github.com/GtkSharp/index.json --name github
             dotnet nuget list source
+            dotnet workload search
             dotnet workload install gtk
       - name: Build MAUI
         run: |
