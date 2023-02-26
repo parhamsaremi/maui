@@ -23,7 +23,9 @@ jobs:
       - name: workload search
         run: dotnet workload search
       - name: Install workload
-        run: dotnet workload install gtk
+        run: |
+            dotnet nuget add source https://nuget.pkg.github.com/GtkSharp/index.json --name github
+            dotnet workload install gtk
       - name: Build MAUI
         run: |
             cd maui
