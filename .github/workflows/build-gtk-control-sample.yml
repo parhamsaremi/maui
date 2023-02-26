@@ -10,11 +10,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: maui
-      - name: Checkout GTKSharp repo
-        uses: actions/checkout@v3
-        with:
-          repository: parhamsaremi/GtkSharp
-          path: GtkSharp
       # We also tested using 6.0.111 for both projects
       # but MAUI failed to build on this version with this error:
       # Could not load file or assembly 'Microsoft.CodeAnalysis, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35'
@@ -23,20 +18,10 @@ jobs:
         uses: actions/setup-dotnet@v1.7.2
         with:
           dotnet-version: '6.0.300'
-      - name: Build GtkSharp
-        run: |
-            cd GtkSharp
-            dotnet tool restore
-            # Disable GTKSharp's cake versioning behaviour with github ci
-            # beceause it breaks InstallWorkload step.
-            export GITHUB_ACTIONS=
-            dotnet cake build.cake --BuildVersion=3.24.24.64
-            dotnet cake --BuildTarget=InstallWorkload --BuildVersion=3.24.24.64
-            cd ..
       - name: Build MAUI
         run: |
             cd maui
-            dotnet nuget add source '../GtkSharp/BuildOutput/NugetPackages'
+            dotnet nuget add source https://nuget.pkg.github.com/GtkSharp/index.json --name github
             dotnet build Microsoft.Maui.BuildTasks.slnf
             dotnet build ./src/Controls/samples/Controls.Sample.Gtk/Controls.Sample.Gtk.csproj
             cd ..
