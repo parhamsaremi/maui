@@ -21,7 +21,7 @@ jobs:
       - name: check dotnet version
         run: dotnet --version
       - name: workload search
-        run: dotnet worklaod search
+        run: dotnet workload search
       - name: Install workload
         run: dotnet workload install gtk
       - name: Build MAUI
