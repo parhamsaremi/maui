@@ -26,7 +26,7 @@ jobs:
             dotnet workload update --advertising-manifests-only --include-previews
             dotnet nuget list source
             dotnet workload search
-            dotnet workload install gtk
+            dotnet workload install gtk --include-previews
       - name: Build MAUI
         run: |
             cd maui
