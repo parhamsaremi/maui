@@ -22,7 +22,7 @@ jobs:
         run: dotnet --version
       - name: Install workload
         run: |
-            dotnet nuget add source --username parhamsaremi --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/GtkSharp/index.json"
+            dotnet nuget add source --username parhamsaremi --password ${{ secrets.PERSONAL_ACCESS_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/GtkSharp/index.json"
             dotnet nuget list source
             dotnet workload search
             dotnet workload install gtk
