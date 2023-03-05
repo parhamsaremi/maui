@@ -34,7 +34,8 @@ namespace Microsoft.Maui.Handlers
 
 		public static void RequestNavigation(INavigationViewHandler arg1, IStackNavigation arg2, object? arg3)
 		{
-			throw new NotImplementedException();
+			if (arg1 is NavigationViewHandler platformHandler && arg3 is NavigationRequest ea)
+				platformHandler.PlatformView?.RequestNavigation(ea);
 		}
 	}
 
