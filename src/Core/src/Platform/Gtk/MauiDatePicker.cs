@@ -390,6 +390,7 @@ namespace Microsoft.Maui.Platform
 
 		void ShowPickerWindow()
 		{
+			GC.Collect();
 			int x = 0;
 			int y = 0;
 
