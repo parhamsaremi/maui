@@ -22,7 +22,7 @@
     <ProjectReference Include="..\..\..\Controls\Maps\src\Controls.Maps.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\Controls.Sample\Resources\Embedded\dotnet_bot.png">
+    <Content Include="dotnet_bot.png">
       <Link>dotnet_bot.png</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
