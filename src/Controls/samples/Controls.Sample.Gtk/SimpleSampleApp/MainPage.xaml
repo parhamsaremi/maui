@@ -18,14 +18,5 @@
                          />
         </StackLayout>
                
-        <Entry x:Name="emailEntry" IsPassword="false"
-               Placeholder="E-mail address"
-               Keyboard="Email"
-                />
-
-        <Button x:Name="nextButton"
-                Text="Next" IsEnabled="false"
-                HorizontalOptions="Center"
-                 />
     </StackLayout>
 </ContentPage>
