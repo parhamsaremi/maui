@@ -35,6 +35,40 @@ namespace Microsoft.Maui.Handlers
 
 		}
 
+		
+		static int Request(double viewSize) => viewSize >= 0 ? (int)viewSize : -1;
+		private void UpdateWidthRequest(IImage image)
+		{
+			var widthRequest = Request(image.Width);
+
+			if (widthRequest != -1 && widthRequest != PlatformView.WidthRequest && widthRequest != PlatformView.AllocatedWidth)
+			{
+				PlatformView.Resize(widthRequest, PlatformView.AllocatedHeight);
+				PlatformView.QueueResize();
+			}
+		}
+		
+		private void UpdateHeightRequest(IImage image)
+		{
+			var heightRequest = Request(image.Height);
+
+			if (heightRequest != -1 && heightRequest != PlatformView.WidthRequest && heightRequest != PlatformView.AllocatedWidth)
+			{
+				PlatformView.Resize(PlatformView.AllocatedWidth, heightRequest);
+				PlatformView.QueueResize();
+			}
+		}
+		
+		public static void MapWidthRequest(IImageHandler handler, IImage view)
+		{
+			((ImageHandler)handler).UpdateWidthRequest(view);
+		}
+
+		public static void MapHeightRequest(IImageHandler handler, IImage view)
+		{
+			((ImageHandler)handler).UpdateHeightRequest(view);
+		}
+
 		void OnSetImageSource(Pixbuf? obj) => PlatformView.Image = obj;
 
 	}

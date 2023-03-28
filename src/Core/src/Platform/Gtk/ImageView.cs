@@ -1,3 +1,5 @@
+using Gdk;
+
 namespace Microsoft.Maui.Platform
 {
 
@@ -9,11 +11,22 @@ namespace Microsoft.Maui.Platform
 
 	public class ImageView : Gtk.Image
 	{
+		Pixbuf? OriginalSizeBuf;
 
-		public Gdk.Pixbuf? Image
+		public Pixbuf? Image
 		{
 			get => Pixbuf;
-			set => Pixbuf = value;
+			set
+			{
+				Pixbuf = value;
+				OriginalSizeBuf = value;
+			}
+		}
+
+		public void Resize(int width, int height)
+		{
+			var newBuf = OriginalSizeBuf?.ScaleSimple(width, height, InterpType.Bilinear);
+			Pixbuf = newBuf;
 		}
 
 	}
