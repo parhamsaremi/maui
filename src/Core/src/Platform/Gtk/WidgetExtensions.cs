@@ -25,7 +25,8 @@ namespace Microsoft.Maui
 
 					break;
 				case Visibility.Collapsed:
-
+					nativeView.Visible = false;
+					
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(visibility), visibility, null);
