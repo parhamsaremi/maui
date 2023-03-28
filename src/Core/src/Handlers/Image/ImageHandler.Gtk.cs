@@ -34,6 +34,20 @@ namespace Microsoft.Maui.Handlers
 			await handler.SourceLoader.UpdateImageSourceAsync();
 
 		}
+		
+		private void UpdateVisibility(Visibility visibility)
+		{
+			if (visibility == Visibility.Visible)
+				PlatformView.Show();
+			else
+				PlatformView.Hide();
+		}
+
+
+		public static void MapVisibility(IImageHandler handler, IImage image)
+		{
+			((ImageHandler)handler).UpdateVisibility(image.Visibility);
+		}
 
 		void OnSetImageSource(Pixbuf? obj) => PlatformView.Image = obj;
 
