@@ -27,8 +27,8 @@ namespace Microsoft.Maui.Handlers
 			[nameof(IImage.IsAnimationPlaying)] = MapIsAnimationPlaying,
 			[nameof(IImage.Source)] = MapSource,
 #if GTK
-			["WidthRequest"] = MapWidth,
-			["HeightRequest"] = MapHeight,
+			["WidthRequest"] = MapWidthRequest,
+			["HeightRequest"] = MapHeightRequest,
 #endif
 		};
 
