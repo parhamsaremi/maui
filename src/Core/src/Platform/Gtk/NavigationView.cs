@@ -7,10 +7,11 @@ namespace Microsoft.Maui.Platform
 
 	public class NavigationView : Gtk.Box
 	{
+		Gtk.Button backButton = new(){Label = "back"};
 		Gtk.Widget? pageWidget = null;
 		IMauiContext? mauiContext = null;
 
-		public NavigationView() : base(Gtk.Orientation.Horizontal, 0) { }
+		public NavigationView() : base(Gtk.Orientation.Vertical, 0) { }
 
 		public void Connect(IStackNavigationView virtualView)
 		{
@@ -26,15 +27,23 @@ namespace Microsoft.Maui.Platform
 			// stack top is last
 			var page = request.NavigationStack.Last();
 			var newPageWidget = page.ToPlatform(mauiContext!);
+			var oldPageWidget = pageWidget;
 			if (pageWidget is null)
 			{
-				this.PackStart(newPageWidget, true, true, 0);
+				this.PackStart(backButton, true, false, 0);
+				this.Add(newPageWidget);
 			}
 			else
 			{
+				backButton.ButtonPressEvent += (o, args) =>
+				{
+					this.Remove(newPageWidget);
+					this.Add(oldPageWidget);
+					pageWidget = oldPageWidget;
+				};
 				this.Remove(pageWidget);
 				this.Add(newPageWidget);
-				this.SetChildPacking(newPageWidget, true, true, 0, PackType.Start);
+				// this.SetChildPacking(newPageWidget, true, true, 0, PackType.Start);
 			}
 			pageWidget = newPageWidget;
 		}
