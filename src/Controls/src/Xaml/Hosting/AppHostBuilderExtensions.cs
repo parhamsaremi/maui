@@ -278,6 +278,18 @@ namespace Microsoft.Maui.Controls.Hosting
 					}
 				}
 			);
+			NavigationViewHandler.Mapper.AppendToMapping(
+				"HasNavigationBar",
+				(INavigationViewHandler handler, IStackNavigationView navigation) =>
+				{
+					if (navigation is NavigationPage navpage)
+					{
+						Microsoft.Maui.Platform.NavigationView navView =
+							(Microsoft.Maui.Platform.NavigationView)handler.PlatformView;
+						navView.UpdateToolBarVisibility(NavigationPage.GetHasNavigationBar(navpage));
+					}
+				}
+			);
 #endif
 		}
 	}

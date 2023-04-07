@@ -46,6 +46,14 @@ namespace Microsoft.Maui.Platform
 			MauiContext = null;
 		}
 
+		public void UpdateToolBarVisibility(bool isVisible)
+		{
+			if (toolbar is not null)
+			{
+				toolbar.Visible = isVisible;
+			}
+		}
+		
 		public void RequestNavigation(NavigationRequest request)
 		{
 			// stack top is last
