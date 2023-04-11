@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Gtk;
 
@@ -8,56 +9,69 @@ namespace Microsoft.Maui.Platform
 	{
 		public void SetToolbar(MauiToolbar? toolbar);
 	}
-	public class NavigationView : Gtk.Box, IToolbarContainer
+	public class NavigationView : Box, IToolbarContainer
 	{
 		MauiToolbar? _toolbar;
-		Gtk.Widget? pageWidget;
-		IMauiContext? MauiContext;
-
-		public NavigationView() : base(Gtk.Orientation.Vertical, 0)
+		Widget? _pageWidget;
+		IMauiContext? _mauiContext;
+		IStackNavigation? _virtualView;
+		IReadOnlyList<IView> _navigationStack = new List<IView>();
+		
+		public NavigationView() : base(Orientation.Vertical, 0)
 		{
 
 		}
 
 		public void Connect(IStackNavigationView virtualView)
 		{
-			MauiContext = virtualView.Handler?.MauiContext;
+			_mauiContext = virtualView.Handler?.MauiContext;
+			_virtualView = virtualView;
 		}
 
 		public void Disconnect(IStackNavigationView virtualView)
 		{
-			MauiContext = null;
+			_mauiContext = null;
+			_virtualView = null;
 		}
 
 		public void SetToolbar(MauiToolbar? toolbar)
 		{
-			if(toolbar is null)
-				return;
 			if (_toolbar is not null)
 			{
+				_toolbar.BackButtonClicked -= NavigateBack;
 				Remove(_toolbar);
 			}
 
+			if (toolbar is null)
+				return;
+			toolbar.BackButtonClicked += NavigateBack;
 			_toolbar = toolbar;
 			PackStart(_toolbar, false, true, 0);
 		}
-		
+
+		void NavigateBack(object? sender)
+		{
+			var request = new NavigationRequest(_navigationStack.SkipLast(1).ToList(), false);
+			_virtualView?.RequestNavigation(request);
+		}
+
 		public void RequestNavigation(NavigationRequest request)
 		{
 			// stack top is last
 			var page = request.NavigationStack.Last();
-			var newPageWidget = page.ToPlatform(MauiContext!);
-			if (pageWidget is null)
+			_navigationStack = request.NavigationStack;
+			var newPageWidget = page.ToPlatform(_mauiContext!);
+			if (_pageWidget is null)
 			{
 				PackEnd(newPageWidget, true, true, 0);
 			}
 			else
 			{
-				Remove(pageWidget);
+				Remove(_pageWidget);
 				Add(newPageWidget);
 				SetChildPacking(newPageWidget, true, true, 0, PackType.End);
 			}
-			pageWidget = newPageWidget;
+			_pageWidget = newPageWidget;
 		}
 
 	}
