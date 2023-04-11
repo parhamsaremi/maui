@@ -11,7 +11,6 @@ namespace Microsoft.Maui.Platform
 	}
 	public class NavigationView : Box, IToolbarContainer
 	{
-		MauiToolbar? _toolbar;
 		Widget? _pageWidget;
 		IMauiContext? _mauiContext;
 		IStackNavigation? _virtualView;
@@ -36,17 +35,6 @@ namespace Microsoft.Maui.Platform
 
 		public void SetToolbar(MauiToolbar? toolbar)
 		{
-			if (_toolbar is not null)
-			{
-				_toolbar.BackButtonClicked -= NavigateBack;
-				Remove(_toolbar);
-			}
-
-			if (toolbar is null)
-				return;
-			toolbar.BackButtonClicked += NavigateBack;
-			_toolbar = toolbar;
-			PackStart(_toolbar, false, true, 0);
 		}
 
 		void NavigateBack(object? sender)
