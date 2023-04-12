@@ -36,14 +36,15 @@ namespace Microsoft.Maui.Platform
 
 		public void SetToolbar(MauiToolbar? toolbar)
 		{
+			if (toolbar is null)
+				return;
+			
 			if (_toolbar is not null)
 			{
 				_toolbar.BackButtonClicked -= NavigateBack;
 				Remove(_toolbar);
 			}
 
-			if (toolbar is null)
-				return;
 			toolbar.BackButtonClicked += NavigateBack;
 			_toolbar = toolbar;
 			PackStart(_toolbar, false, true, 0);
@@ -51,6 +52,10 @@ namespace Microsoft.Maui.Platform
 
 		void NavigateBack(object? sender)
 		{
+			if (_navigationStack.Count <= 1)
+			{
+				return;
+			}
 			var request = new NavigationRequest(_navigationStack.SkipLast(1).ToList(), false);
 			_virtualView?.RequestNavigation(request);
 		}

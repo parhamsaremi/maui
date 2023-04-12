@@ -18,6 +18,7 @@ namespace Microsoft.Maui.Platform
 			BackButton.Clicked += (sender, args) => BackButtonClicked?.Invoke(sender);
 
 			PackStart(BackButton, false, false, 0);
+			NoShowAll = true;
 		}
 	}	
 }
