@@ -39,7 +39,7 @@
 
 		[MissingMapper]
 		public virtual bool NeedsContainer => false;
-		
+
 		public static void MapToolbar(IViewHandler handler, IView view)
 		{
 			if (view is IToolbarElement tb)

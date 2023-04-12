@@ -16,7 +16,7 @@ namespace Microsoft.Maui.Platform
 		IMauiContext? _mauiContext;
 		IStackNavigation? _virtualView;
 		IReadOnlyList<IView> _navigationStack = new List<IView>();
-		
+
 		public NavigationView() : base(Orientation.Vertical, 0)
 		{
 
@@ -38,7 +38,7 @@ namespace Microsoft.Maui.Platform
 		{
 			if (toolbar is null)
 				return;
-			
+
 			if (_toolbar is not null)
 			{
 				_toolbar.BackButtonClicked -= NavigateBack;

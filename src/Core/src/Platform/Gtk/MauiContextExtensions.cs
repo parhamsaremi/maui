@@ -10,7 +10,7 @@ internal static partial class MauiContextExtensions
 
 	public static Window GetPlatformWindow(this IMauiContext mauiContext) =>
 		mauiContext.Services.GetRequiredService<Window>();
-	
+
 	public static IToolbarContainer? GetToolBarContainer(this IMauiContext mauiContext)
 	{
 		var queue = new Queue<Widget>(mauiContext.GetPlatformWindow().Children);
@@ -22,8 +22,9 @@ internal static partial class MauiContextExtensions
 				return result;
 			}
 
-			if (curr is not Container container) continue;
-			
+			if (curr is not Container container)
+				continue;
+
 			foreach (var child in container.Children)
 			{
 				queue.Enqueue(child);
