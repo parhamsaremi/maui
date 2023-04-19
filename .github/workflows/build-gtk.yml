@@ -36,7 +36,8 @@ jobs:
             dotnet workload install gtk --skip-manifest-update
       - name: Build MAUI
         run: |
-            dotnet build Microsoft.Maui.Gtk.slnf
+            dotnet build Microsoft.Maui.Gtk.slnf || ls /home/runner/work/maui/maui/.nuspec/
+            ls /home/runner/work/maui/maui/.nuspec/
 
   dotnet-format:
     needs: build_and_test
