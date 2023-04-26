@@ -38,6 +38,31 @@ jobs:
         run: |
             dotnet build Microsoft.Maui.Gtk.slnf || ls /home/runner/work/maui/maui/.nuspec/
             ls /home/runner/work/maui/maui/.nuspec/
+      - name: Build MAUI
+        run: |
+            git clean -fdx
+            dotnet build Microsoft.Maui.Gtk.slnf || ls /home/runner/work/maui/maui/.nuspec/
+            ls /home/runner/work/maui/maui/.nuspec/
+      - name: Build MAUI
+        run: |
+            git clean -fdx
+            dotnet build Microsoft.Maui.Gtk.slnf || ls /home/runner/work/maui/maui/.nuspec/
+            ls /home/runner/work/maui/maui/.nuspec/
+      - name: Build MAUI
+        run: |
+            git clean -fdx
+            dotnet build Microsoft.Maui.Gtk.slnf || ls /home/runner/work/maui/maui/.nuspec/
+            ls /home/runner/work/maui/maui/.nuspec/
+      - name: Build MAUI
+        run: |
+            git clean -fdx
+            dotnet build Microsoft.Maui.Gtk.slnf || ls /home/runner/work/maui/maui/.nuspec/
+            ls /home/runner/work/maui/maui/.nuspec/
+      - name: Build MAUI
+        run: |
+            git clean -fdx
+            dotnet build Microsoft.Maui.Gtk.slnf || ls /home/runner/work/maui/maui/.nuspec/
+            ls /home/runner/work/maui/maui/.nuspec/
 
   dotnet-format:
     needs: build_and_test
