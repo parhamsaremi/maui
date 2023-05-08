@@ -28,6 +28,7 @@ jobs:
             wget --user ${{ github.repository_owner }} --password ${{ secrets.GITHUB_TOKEN }} https://nuget.pkg.github.com/GtkSharp/download/gtksharp.net.sdk.gtk.manifest-${{ env.DotnetVersion }}/$GtkSharpVersion/gtksharp.net.sdk.gtk.manifest-${{ env.DotnetVersion }}.nupkg
             DOTNET_DIR=/home/runner/.dotnet
             WORKLOAD_MANIFEST_DIR=$DOTNET_DIR/sdk-manifests/${{ env.DotnetVersion }}/gtksharp.net.sdk.gtk
+            mkdir -p $WORKLOAD_MANIFEST_DIR/
             ls $DOTNET_DIR/sdk-manifests/
             echo "******************************"
             dotnet --version
