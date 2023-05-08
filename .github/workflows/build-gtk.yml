@@ -28,7 +28,8 @@ jobs:
             WORKLOAD_MANIFEST_DIR=$DOTNET_DIR/sdk-manifests/${{ env.DotnetVersion }}/gtksharp.net.sdk.gtk
             ls $DOTNET_DIR/sdk-manifests/
             echo "******************************"
-            ls $DOTNET_DIR/sdk-manifests/gtksharp.net.sdk.gtk
+            dotnet --version
+            dotnet --list-sdks
             echo "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
             unzip -j gtksharp.net.sdk.gtk.manifest-${{ env.DotnetVersion }}.nupkg "data/*" -d $WORKLOAD_MANIFEST_DIR/
             rm gtksharp.net.sdk.gtk.manifest-${{ env.DotnetVersion }}.nupkg
