@@ -250,7 +250,32 @@ namespace Microsoft.Maui.Controls.Handlers.Compatibility
 				return;
 
 			Color bgColor = Element.BackgroundColor;
-			_backgroundDrawable.SetColor(bgColor?.ToPlatform() ?? AColor.White);
+
+			AColor GetDefaultBackgroundColor() {
+				AColor white = AColor.White;
+
+				using (var background = new Android.Util.TypedValue())
+				{
+					if (Context == null || Context.Theme == null || Context.Resources == null)
+						return white;
+
+					if (Context.Theme.ResolveAttribute(Android.Resource.Attribute.ColorBackground, background, true))
+					{
+						var resource = Context.Resources.GetResourceTypeName(background.ResourceId);
+						var type = resource?.ToLowerInvariant();
+
+						if (type == "color")
+						{
+							var color = new AColor(AndroidX.Core.Content.ContextCompat.GetColor(Context, background.ResourceId));
+							return color;
+						}
+					}
+				}
+
+				return white;
+			}
+
+			_backgroundDrawable.SetColor(bgColor?.ToPlatform() ?? GetDefaultBackgroundColor());
 		}
 
 		void UpdateBackground()
