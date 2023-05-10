@@ -19,6 +19,9 @@ jobs:
         uses: actions/setup-dotnet@v1.7.2
         with:
           dotnet-version: ${{ env.DotnetVersion }}
+      - name: Add nuget source
+        run: |
+          dotnet nuget add source --name nuget https://api.nuget.org/v3/index.json
       - name: Install gtk workload
         run: |
             # For some reason automatic workload manifest detection doesn't work (see https://github.com/GtkSharp/GtkSharp/issues/355#issuecomment-1446262239), so download and uzip mainfest file manually
@@ -31,7 +34,7 @@ jobs:
             rm gtksharp.net.sdk.gtk.manifest-${{ env.DotnetVersion }}.nupkg
             chmod 764 $WORKLOAD_MANIFEST_DIR/*
             dotnet workload search
-            dotnet workload install gtk --skip-manifest-update -s https://api.nuget.org/v3/index.json
+            dotnet workload install gtk --skip-manifest-update
       - name: Build MAUI
         run: |
             dotnet build Microsoft.Maui.BuildTasks.slnf
