@@ -14,7 +14,7 @@ jobs:
       # We also tested using 6.0.111 for both projects
       # but MAUI failed to build on this version with this error:
       # Could not load file or assembly 'Microsoft.CodeAnalysis, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35'
-      # So instead we use 6.0.300
+      # So instead we use 6.0.400
       - name: Setup .NET SDK ${{ env.DotnetVersion }}
         uses: actions/setup-dotnet@v1.7.2
         with:
