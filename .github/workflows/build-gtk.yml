@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-22.04
     env:
       GtkSharpVersion: 3.24.24.95
-      DotnetVersion: 6.0.300
+      DotnetVersion: 6.0.400
     steps:
       - name: Checkout MAUI repo
         uses: actions/checkout@v2
