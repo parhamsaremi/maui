@@ -9,16 +9,6 @@ jobs:
       GtkSharpVersion: 3.24.24.95
       DotnetVersion: 6.0.400
     steps:
-      - name: Checkout MAUI repo
-        uses: actions/checkout@v2
-      # We also tested using 6.0.111 for both projects
-      # but MAUI failed to build on this version with this error:
-      # Could not load file or assembly 'Microsoft.CodeAnalysis, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35'
-      # So instead we use 6.0.300
-      - name: Setup .NET SDK ${{ env.DotnetVersion }}
-        uses: actions/setup-dotnet@v1.7.2
-        with:
-          dotnet-version: ${{ env.DotnetVersion }}
       - name: Install gtk workload
         run: |
             # For some reason automatic workload manifest detection doesn't work (see https://github.com/GtkSharp/GtkSharp/issues/355#issuecomment-1446262239), so download and uzip mainfest file manually
@@ -32,6 +22,16 @@ jobs:
             chmod 764 $WORKLOAD_MANIFEST_DIR/*
             dotnet workload search
             dotnet workload install gtk --skip-manifest-update
+      - name: Checkout MAUI repo
+        uses: actions/checkout@v2
+      # We also tested using 6.0.111 for both projects
+      # but MAUI failed to build on this version with this error:
+      # Could not load file or assembly 'Microsoft.CodeAnalysis, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35'
+      # So instead we use 6.0.300
+      - name: Setup .NET SDK ${{ env.DotnetVersion }}
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: ${{ env.DotnetVersion }}
       - name: Build MAUI
         run: |
             dotnet build Microsoft.Maui.BuildTasks.slnf
