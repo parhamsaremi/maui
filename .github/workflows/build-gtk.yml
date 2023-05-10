@@ -22,7 +22,7 @@ jobs:
       - name: Install gtk workload
         run: |
             # For some reason automatic workload manifest detection doesn't work (see https://github.com/GtkSharp/GtkSharp/issues/355#issuecomment-1446262239), so download and uzip mainfest file manually
-            wget -o gtksharp.net.sdk.gtk.manifest-${{ env.DotnetVersion }}.nupkg https://globalcdn.nuget.org/packages/gtksharp.net.sdk.gtk.manifest-${{ env.DotnetVersion }}.$GtkSharpVersion.nupkg
+            wget -O gtksharp.net.sdk.gtk.manifest-${{ env.DotnetVersion }}.nupkg https://globalcdn.nuget.org/packages/gtksharp.net.sdk.gtk.manifest-${{ env.DotnetVersion }}.$GtkSharpVersion.nupkg
             ls
             DOTNET_DIR=/home/runner/.dotnet
             WORKLOAD_MANIFEST_DIR=$DOTNET_DIR/sdk-manifests/${{ env.DotnetVersion }}/gtksharp.net.sdk.gtk
