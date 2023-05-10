@@ -20,8 +20,7 @@ jobs:
         with:
           dotnet-version: ${{ env.DotnetVersion }}
       - name: Add nuget source
-        run: |
-          dotnet nuget add source --name nuget https://api.nuget.org/v3/index.json
+        run: dotnet nuget add source --name nuget https://api.nuget.org/v3/index.json
       - name: Install gtk workload
         run: |
             # For some reason automatic workload manifest detection doesn't work (see https://github.com/GtkSharp/GtkSharp/issues/355#issuecomment-1446262239), so download and uzip mainfest file manually
